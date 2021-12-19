@@ -1,0 +1,450 @@
+JSP(Java Server Page)
+1. JDK(JVM) 설치
+2. 웹서버(웹서버(아파치)+웹애플리케이션서버(톰캣)) 설치
+- 웹서버 : 서버에 있는 웹페이지를 사용자에게 보여주는 서비스
+- 웹애플리케이션서버(WAS, 웹컨테이너,컨테이너) : jsp=>java(html출력)변경
+
+웹서비스를 하기위해서 서버를 start
+C:\Program Files\Apache Software Foundation\Tomcat 8.5\bin
+Tomcat8w.exe 오른쪽버튼 - 관리자권한으로 실행 - start 
+
+사용자(웹브라우저) - 서버 접속
+http://localhost:8181
+http://localhost:8181/index.jsp
+http://localhost:8181/test.html
+http://localhost:8181/test2.jsp
+
+http://127.0.0.1:8181/test2.jsp
+
+외부에서 자신 서버에 접속할때
+cmd
+ipconfig
+http://192.168.2.200:8181/test2.jsp
+
+
+웹서비스를 하기위한 파일의 위치
+C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps\ROOT
+index.jsp
+test.html
+test2.jsp
+
+jsp => java(html 출력) 변경 => 응답파일 위치
+C:\Program Files\Apache Software Foundation\Tomcat 8.5\work\Catalina\localhost\ROOT\org\apache\jsp
+index_jsp.java
+test2_jsp.java
+
+웹서비스를 중지 하기위해서 서버를 stop
+C:\Program Files\Apache Software Foundation\Tomcat 8.5\bin
+Tomcat8w.exe 오른쪽버튼 - 관리자권한으로 실행 - stop
+
+3. 데이터베이스 서버(데이터베이스 관리시스템 DBMS)
+
+
+이클립스 - 다이나믹 웹 프로젝트 생성
+프로젝트 - 오른쪽 버튼 - Properties
+Java Compiler - JDK Compliance - 1.8
+Project Facets - Java - 1.8
+Java Build Path - Libraries 탭
+JRE System Library - Remove - Add Libray - JRE System Library - Next - Finish
+Server Runtime - Remove - Add Libray - Server Runtime - Next - Finish
+Apply Close
+
+
+---------------------------------------------------------------
+
+1. <%    %>  자바, jsp 명령을 여러줄 입력
+    <%=  %>  출력할 java,jsp 하나의 명령 입력
+    <%@  %>  jsp페이지 설정 
+    <%!    %> 전영역 사용하는 변수 설정, 메서드 정의
+2. JSP 내장객체 
+   request, response, session, application, ...
+3. JSP 액션태그 
+   include , forward, ..
+4. session, 쿠키 
+5. 데이터베이스 연동(회원가입,로그인,게시판,...)
+6. 자바빈 자바DB 등장(회원가입,로그인,게시판,..)
+7. 사이트 완성
+
+8. MVC패턴 => 사이트 완성
+9. 스프링 => 팀프로젝트 진행
+-----------------------------------------------------------------
+클라이언트와 서버의 동작원리
+
+사용자(유저, 클라이언트) 
+브라우저 주소 http://localhost:8181/JspStudy/jsp1/testForm1.jsp
+사용자가 localhost:8181서버에 testForm1.jsp페이지를 보고싶다고 요청
+=> http(html페이지를 전송해주는 프로토콜(통신규약)) 
+testForm1.jsp요청정보를 들고 localhost:8181서버에 요청하러 감
+=>웹서버 : testForm1.jsp를 찾음 처리하기위해서 웹애플리케이션서버에 넘김
+=>웹애플리케이션서버 : 받아서 명령를 번역하고 html출력 하는 처리작업
+=> 결과 응답정보를 만들어서 웹서버에 전달
+=> 웹서버는 http에 전달 => 사용자에 전달 => 브라우저에 결과 보여줌
+
+
+
+사용자(유저, 클라이언트) 
+브라우저 주소 http://localhost:8181/JspStudy/jsp1/testPro1.jsp?id=kim
+사용자가 localhost:8181서버에 testPro1.jsp페이지를 보고싶다고 요청
+=> http(html페이지를 전송해주는 프로토콜(통신규약)) 
+testPro1.jsp요청정보를 들고 localhost:8181서버에 요청하러 감
+=>웹서버 : testPro1.jsp를 찾음 처리하기위해서 웹애플리케이션서버에 넘김
+
+=>웹애플리케이션서버 
+: 받은 정보를 서버에 저장하기 위해서 내장객체 만들기(객체생성, 기억장소를 할당)
+  request(요청정보 저장),response(응답정보 저장) 내장객체 만들고 나서 
+  request에 받은 정보(요청정보)를 저장
+: 받아서 명령를 번역하고 html출력 하는 처리작업
+  response에 처리작업결과 응답정보를 저장
+
+=> 결과 응답정보를 만들어서 웹서버에 전달
+=> 웹서버는 http에 전달 => 사용자에 전달 => 브라우저에 결과 보여줌
+-------------------------------------------------------------------
+TCP/IP(인터넷,네트워크), FTP(모든파일전송), SMTP(메일전송), HTTP(웹문서전송),....
+
+HTTP(HyperText Transfer Protocol)프로토콜 : html요청하고 응답하는 통신을 하는 통신규약
+HTTPS : 보안 추가 된 프로토콜
+
+http://localhost:8181/JspStudy/jsp1/request.jsp
+https://www.naver.com/
+
+시작라인 get방식 주소줄 id=kim
+헤더
+본문(요청 메시지) post방식 id=kim
+HTTP 요청메시지 
+
+시작라인
+헤더
+본문(응답 메시지)
+HTTP 응답메시지
+
+
+--------------------------------------------------
+인터페이스 구현 - 실기시험(1. 폼태그 만들기30, 2. 폼화면제어40, 3.폼내용 서버전달 출력30)
+9/15(수) - 연습
+9/16(목) - 시험 진행
+
+-----------------------------------------------------
+
+데이터베이스 서버 설치
+데이터베이스 : 데이터를 저장
+데이터베이스관리시스템(DBMS,DB서버) : 데이터를 저장,수정,삭제, 조회 효율적 관리
+                                                      : 오라클, MS-SQL, Mysql(MariaDB), ...
+
+데이터베이스 관리언어 (SQL)
+데이터정의어 : create, alter, drop
+데이터제어어 : grant, revoke
+데이터조작어 : select, insert, update, delete
+
+https://www.mysql.com/
+
+Downloads
+MySQL Community Server
+
+Looking for previous GA versions? 
+
+MySQL Community Server 5.7.35 
+
+MySQL Installer 5.7.35 
+
+Windows (x86, 32-bit), MSI Installer 5.7.35 2.4M 
+
+다운로드
+
+mysql-installer-web-community-5.7.35.0.msi
+
+관리자 root 
+비밀번호 1234
+
+디바이스 변경  허용 - yes
+Choose setup Type  - Developer Default - Next
+check requirement - mysql server - execute  
+                           - workbench  - execute
+                           cancel
+check requirement - Next - Yes
+Download  - Execute - Next
+installation - execute - Next
+
+product Configuration - Next
+Type and Networking - Port 3306 -  Next
+Accounts and Roles - 1234
+                               1234 - Next
+Windows service - Next
+Appliy configuration - Execute - Finish
+
+product Configuration - Next
+MySQL Router Configuration - finish
+
+product Configuration - Next
+Connect To Server - Password:  1234 Check - Next 
+
+Apply Configuration - Execute  - Finish
+
+product Configuration - Next 
+Installation Complete - Finish
+
+cmd
+mysql -u root -p
+1234
+
+'mysql'은(는) 내부 또는 외부 명령, 실행할 수 있는 프로그램, 또는
+배치 파일이 아닙니다.
+
+mysql 명령은 파일위치 상관없이 사용하기 위해서 => 시스템경로에 저장
+
+시스템 - 고급시스템설정 - 고급 - 환경변수
+시스템변수 - Path - 편집 - 새로만들기 - 
+C:\Program Files\MySQL\MySQL Server 5.7\bin
+확인 - 확인 - 확인
+
+mysql서버에 유저 root 비밀번호 1234 접속
+cmd
+mysql -u root -p
+1234
+mysql서버에 접속한 모양
+mysql>
+
+mysql서버 상태확인
+mysql> status;
+Server characterset:    latin1
+Db     characterset:    latin1
+=> utf8 변경
+
+환경설정 파일 
+C:\ProgramData\MySQL\MySQL Server 5.7
+my.ini 복사 => 바탕화면  붙여넣기
+my.ini  오른쪽버튼 with edit notepad
+
+99라인  # character-set-server=
+#공백  지우고
+character-set-server=utf8
+변경
+
+바탕화면 my.ini 복사 
+=> C:\ProgramData\MySQL\MySQL Server 5.7  붙여넣기
+
+Mysql 서버 재시작 
+실행
+services.msc
+MYSQL57  오른쪽버튼 다시시작
+
+cmd
+mysql -u root -p
+1234
+
+mysql> status;
+Server characterset:    utf8
+Db     characterset:    utf8
+
+데이터베이스 목록 확인
+show databases;
+
+데이터베이스 공간 만들기
+create database jspdb2;
+show databases;
+
+데이터베이스 공간 삭제
+drop database jspdb2;
+show databases;
+
+데이터베이스 공간 만들기
+create database jspdb2;
+show databases;
+
+데이터베이스 공간안에 테이블 만들기
+데이터베이스 공간 선택
+use jspdb2;
+
+데이터베이스 공간안에 테이블 목록 확인
+show tables;
+
+데이터베이스 공간안에 테이블 만들기
+create table student(
+     num int,
+     name varchar(10)
+);
+
+데이터베이스 공간안에 테이블 목록 확인
+show tables;
+
+데이터베이스 공간안에 테이블 구조 확인
+desc student;
+
+테이블에 데이터 저장
+insert into 테이블이름(열이름,열이름) values(값,'값');
+insert into student(num,name) values(1,'홍길동');
+
+테이블에 데이터 조회
+select * from student;
+
+insert into student(num,name) values(1,'홍길동');
+=> 중복된 데이터 입력
+
+테이블 삭제
+drop table student;
+
+데이터베이스 공간안에 테이블 목록 확인
+show tables;
+
+데이터베이스 공간안에 테이블 만들기(기준값 정하기, 중복되지 않고 , 비어있지 않은 값 저장)
+create table student(
+     num int primary key,
+     name varchar(10)
+);
+
+데이터베이스 공간안에 테이블 목록 확인
+show tables;
+
+데이터베이스 공간안에 테이블 구조 확인
+desc student;
+
+테이블에 데이터 저장
+insert into 테이블이름(열이름,열이름) values(값,'값');
+insert into student(num,name) values(1,'홍길동');
+
+테이블에 데이터 조회
+select * from student;
+
+insert into student(num,name) values(1,'홍길동');
+=> 중복된 데이터 입력
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+
+insert into student(num,name) values(2,'홍길동');
+select * from student;
+
+insert into student(name) values('김길동');
+ERROR 1364 (HY000): Field 'num' doesn't have a default value
+
+insert into student(num,name) values(3,'이길동');
+select * from student;
+
+학생정보(student테이블 내용) 수정
+update 테이블이름 set 열이름=값 where 조건열=값;
+
+update student set name='홍길자' where num=2;
+select * from student;
+
+// 3번 학생의 이름을 이길남으로 변경
+update student set name='이길남' where num=3;
+
+// 번호1번 이면서 이름 홍길동 을 찾아서  번호를 5번 변경 
+//  where num=1 and name='홍길동';
+update student set num=5 where num=1 and name='홍길동';
+
+학생정보 삭제(student테이블 안에 있는 학생 삭제)
+ delete from 테이블이름 where 조건열 =값;
+delete from student where num=5;
+
+// num가 3번 이면서 name이 이길남 학생 삭제
+delete from student where num=3 and name='이길남';
+
+// 조회 
+select * from 테이블이름 where 조건=값 and 조건=값;
+select * from student where num=2 and name='홍길자';
+
+insert into student(num,name) values(1,'김길동');
+
+//정렬
+select * from 테이블이름 order by 열 asc,desc
+// num을 기준으로 내림차순
+select * from student order by num desc;
+// name을 기준으로 오름차순
+select * from student order by name asc;
+
+// 자바와 데이터베이스 연결하는 프로그램 설치
+=> JDBC 프로그램 설치
+mysql-connector-java-5.1.49.jar 폴더에 넣기
+webapp - WEB-INF - lib - mysql-connector-java-5.1.49.jar
+
+// 1단계  설치한 프로그램 불러오기
+// 2단계 설치한 프로그램을 이용해서 데이터베이스 연결하기
+// 3단계 연결해서 sql 만들고 실행할 준비
+// 4단계 sql 실행 (insert,update,delete), select 실행=> 결과 저장
+// 5단계 select 결과 => 출력 , 저장공간에 저장
+
+// 회원테이블 공간 만들기(아이디, 비밀번호, 이름 , 전화번호, 이메일, 성별, 생년월일,가입날짜...)
+// 아이디, 비밀번호, 이름 , 가입날짜
+cmd
+mysql -u root -p
+1234
+use jspdb2
+
+create table member(
+  id varchar(20) primary key,
+  pass varchar(20),
+  name varchar(20),
+  date  datetime
+);
+
+desc member;
+
+// 게시판 테이블 공간 만들기
+(글번호, 글쓴이,비밀번호, 제목, 등록일, 조회,글내용)
+cmd
+mysql -u root -p
+1234
+use jspdb2
+
+drop table board;
+
+create table board(
+  num int primary key,
+  name varchar(20),
+  pass varchar(20),
+  subject varchar(100),
+  content varchar(1000),
+  readcount int,
+  date datetime
+);
+desc board;
+
+UI구현 실기시험
+2021년 10월 29일(금)
+1. 화면배치
+2. 화면배치 응용
+3. 테이블 
+
+서버프로그램 구현 (개인프로젝트-포트폴리오) 
+2021년 11월 05일(금)
+주제정하기 => 자기소개 사이트 , 관심분야...
+화면틀 그대로 => 메뉴, 이미지 
+1. 회원가입
+2. 우편검색 API
+3. 로그인
+4. 회원정보수정
+5. 게시판글쓰기
+6. 게시판 글목록
+7. 글내용
+8. 글수정
+9. 글삭제
+10. 자료실 게시판
+
+모델2 (MVC) =>  패턴 연습
+스프링=> 팀프로젝트
+2021년 11월 08일(월) ~ 12월15일(수)
+
+회원가입한 내용을 디비에 저장 할 공간 만들기
+create table member(
+  id varchar(20) primary key,
+  pass varchar(20),
+  name varchar(20),
+  date  datetime
+);
+
+mysql -u root -p
+Enter password: 1234
+use jspdb2;
+
+alter table member
+add email varchar(50);
+
+alter table member
+add address varchar(100);
+
+alter table member
+add phone varchar(50);
+
+alter table member
+add mobile varchar(50);
+
+
+
