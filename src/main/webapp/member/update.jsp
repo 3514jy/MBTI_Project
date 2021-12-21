@@ -2,6 +2,7 @@
 <%@page import="member.MemberDAO1"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,34 +76,25 @@ MemberDTO1 memberDTO1=memberDAO1.getmember1(id);
 <label>이름</label>
 <input type="text" name="name" value="<%=memberDTO1.getName()%>"><br>
 <label>이메일</label>
-<input type="text" name="email" value="<%=memberDTO1.getEmail()%>">@
-<select>
-	<option>이메일은 선택해주세요</option>
-	<option>naver.com</option>
-	<option>nate.com</option>
-	<option>gmail.com</option>
-	<option>yahoo.com</option>
-	<option>hanmail.net</option>
-	<option>daum.net</option>
-</select><br>
+<input type="text" name="email" value="<%=memberDTO1.getEmail()%>"><br>
 
-<label>MBTI</label>
-<input type="radio" name="MBTI" value="INTJ"> INTJ
-<input type="radio" name="MBTI" value="INTP"> INTP
-<input type="radio" name="MBTI" value="INFJ"> INFJ
-<input type="radio" name="MBTI" value="INFP"> INFP
-<input type="radio" name="MBTI" value="ISTJ"> ISTJ
-<input type="radio" name="MBTI" value="ISTP"> ISTP
-<input type="radio" name="MBTI" value="ISFJ"> ISFJ
-<input type="radio" name="MBTI" value="ISFP"> ISFP<br>
-<input type="radio" name="MBTI" value="ENTJ"> ENTJ
-<input type="radio" name="MBTI" value="ENTP"> ENTP
-<input type="radio" name="MBTI" value="ENFJ"> ENFJ
-<input type="radio" name="MBTI" value="ENFP"> ENFP
-<input type="radio" name="MBTI" value="ESTJ"> ESTJ
-<input type="radio" name="MBTI" value="ESTP"> ESTP
-<input type="radio" name="MBTI" value="ESFJ"> ESFJ
-<input type="radio" name="MBTI" value="ESFP"> ESFP
+<label>MBTI</label> 
+<input type="radio" name="MBTI"  value="INTJ" <%if(memberDTO1.getMbti().contains("INTJ")) {%> checked <%} %>> INTJ
+<input type="radio" name="MBTI" value="INTP" <%if(memberDTO1.getMbti().contains("INTP")) {%> checked <%} %>> INTP
+<input type="radio" name="MBTI" value="INFJ" <%if(memberDTO1.getMbti().contains("INFJ")) {%> checked <%} %>> INFJ
+<input type="radio" name="MBTI" value="INFP"  <%if(memberDTO1.getMbti().contains("INFP")) {%> checked <%} %>> INFP
+<input type="radio" name="MBTI" value="ISTJ"  <%if(memberDTO1.getMbti().contains("ISTJ")) {%> checked <%} %>> ISTJ
+<input type="radio" name="MBTI" value="ISTP"  <%if(memberDTO1.getMbti().contains("ISTP")) {%> checked <%} %>> ISTP
+<input type="radio" name="MBTI" value="ISFJ"  <%if(memberDTO1.getMbti().contains("ISFJ")) {%> checked <%} %>> ISFJ
+<input type="radio" name="MBTI" value="ISFP"  <%if(memberDTO1.getMbti().contains("ISFP")) {%> checked <%} %>> ISFP<br>
+<input type="radio" name="MBTI" value="ENTJ"  <%if(memberDTO1.getMbti().contains("ENTJ")) {%> checked <%} %>> ENTJ
+<input type="radio" name="MBTI" value="ENTP"  <%if(memberDTO1.getMbti().contains("ENTP")) {%> checked <%} %>> ENTP
+<input type="radio" name="MBTI" value="ENFJ"  <%if(memberDTO1.getMbti().contains("ENFJ")) {%> checked <%} %>> ENFJ
+<input type="radio" name="MBTI" value="ENFP"  <%if(memberDTO1.getMbti().contains("ENFP")) {%> checked <%} %>> ENFP
+<input type="radio" name="MBTI" value="ESTJ"  <%if(memberDTO1.getMbti().contains("ESTJ")) {%> checked <%} %>> ESTJ
+<input type="radio" name="MBTI" value="ESTP"  <%if(memberDTO1.getMbti().contains("ESTP")) {%> checked <%} %>>ESTP
+<input type="radio" name="MBTI" value="ESFJ" <%if(memberDTO1.getMbti().contains("ESFJ")) {%> checked <%} %>>ESFJ
+<input type="radio" name="MBTI" value="ESFP"  <%if(memberDTO1.getMbti().contains("ESFP")) {%> checked <%} %>> ESFP
 </fieldset>
 
 <fieldset>

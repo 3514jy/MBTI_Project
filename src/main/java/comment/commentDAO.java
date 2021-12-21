@@ -58,15 +58,12 @@ public class commentDAO {
 			pre=con.prepareStatement(sql);
 			rs=pre.executeQuery();
 			
-			if(rs.next()) {
-				num=rs.getInt("max(num)")+1;
-			}
-			sql ="insert into comment(date,comment,name,num,boardNum) values(?,?,?,?,?)";
+			sql ="insert into comment(num,comment,name,date,boardNum) values(?,?,?,?,?)";
 			pre=con.prepareStatement(sql);
-			pre.setTimestamp(1,cDTO.getDate());
+			pre.setInt(1,num);
 			pre.setString(2, cDTO.getComment());
 			pre.setString(3, cDTO.getName());
-			pre.setInt(4,num);
+			pre.setTimestamp(4,cDTO.getDate());
 			pre.setInt(5, cDTO.getBoardNum());		
 			//첨부파일
 			pre.executeUpdate();
@@ -77,18 +74,19 @@ public class commentDAO {
 		}
 	}//insertBoard //게시판 작성내용을 저장할 수 있는 저장소
 
-	public List<commentDTO> getCommentList(int startRow,int pageSize){
+	public List<commentDTO> getCommentList(int startRow,int pagesize, int boardNum){
 		
 		List<commentDTO> commentList = new ArrayList<commentDTO>();
 		try {
 			con = getConnection();
 //			sql ="select *from comment order by num desc"; => comment의 전체 숫자를 내림차순으로
-			sql ="select * from comment order by num desc limit ?,?";
+			sql ="SELECT * FROM comment where boardNum=? order by num desc limit ?,?";
 			//select * from comment order by num desc limit 시작행-1, 가져올개수; 
 			//comment의 전체 숫자를 ? 개씩 짤라서
 			pre= con.prepareStatement(sql);
-			pre.setInt(1, startRow-1);//시작할행
-			pre.setInt(2, pageSize);//가져올 갯수
+			pre.setInt(1, boardNum);//시작할행
+			pre.setInt(2, startRow-1);//시작할행
+			pre.setInt(3, pagesize);//가져올 갯수
 			rs= pre.executeQuery();
 			
 			while(rs.next()) {

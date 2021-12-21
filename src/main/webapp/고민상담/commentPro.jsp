@@ -15,7 +15,7 @@
 request.setCharacterEncoding("utf-8");
 String comment=request.getParameter("comment");
 String name =request.getParameter("name");
-int boardNum =Integer.parseInt(request.getParameter("boardNum"));
+int boardNum =Integer.parseInt(request.getParameter("boardNum").trim());
 
 commentDTO cDTO = new commentDTO();
 cDTO.setComment(comment);
@@ -26,7 +26,9 @@ commentDAO cDAO = new commentDAO();
 cDAO.insertComment(cDTO);
 
 response.sendRedirect("coList.jsp");
+
 %>
+
 
 </body>
 </html>

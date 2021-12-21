@@ -1,3 +1,5 @@
+<%@page import="member.MemberDTO1"%>
+<%@page import="member.MemberDAO1"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="menu5.Menu5DTO"%>
 <%@page import="menu5.Menu5DAO"%>
@@ -43,6 +45,14 @@ margin-top: 100px;
 //BoardDAO 객체생성
 Menu5DAO boardDAO_M5 =new Menu5DAO();
 
+//세션값 가져오기
+String id=(String)session.getAttribute("id");
+//MemberDAO 객체생성
+MemberDAO1 memberDAO1=new MemberDAO1();
+//id정보를 조회 MemberDTO getMember(id) 메서드 정의
+//MemberDTO  memberDTO = getMember(id) 메서드 호출
+MemberDTO1 memberDTO1=memberDAO1.getmember1(id);
+
 // 한화면에 보여줄 글개수  10개 설정
 int pageSize=3;
 
@@ -73,7 +83,7 @@ int count=boardDAO_M5.getBoardM5Count();
 <table id="notice" >
 <tr><th class="tno" >글번호</th>
     <th class="ttitle">제목</th>
-    <th class="twrite">글쓴이</th>
+    <th class="twrite">글쓴이의 MBTI</th>
     <th class="tdate">등록일</th>
     <th class="tread">조회수</th></tr>
 <%
@@ -86,7 +96,7 @@ for(int i=0;i<boardListM5.size();i++){
 %><tr><td><%=mboardDTO.getNum() %></td>
       <td><a href="content2.jsp?num=<%=mboardDTO.getNum()%>">
       <%=mboardDTO.getTtitle()%></a></td>
-      <td><%=mboardDTO.getTwrite() %></td>
+      <td><%=memberDTO1.getMbti()%></td>
       <td><%=dateFormat.format(mboardDTO.getDate()) %></td>
       <td><%=mboardDTO.getReadcount() %></td></tr><%	
 }

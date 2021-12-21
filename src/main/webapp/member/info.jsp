@@ -63,17 +63,8 @@ MemberDTO1 memberDTO=memberDAO.getmember1(id);
 <label>Name</label>
 <input type="text" name="name" value="<%=memberDTO.getName()%>" readonly><br>
 <label>이메일</label>
-<input type="text" name="email" value="<%=memberDTO.getEmail()%>" readonly>@
-<select name ="email2">
-	<option>이메일은 선택해주세요</option>
-	<option value="naver.com" >naver.com</option>
-	<option value="nate.com" >nate.com</option>
-	<option value="gmail.com" >gmail.com</option>
-	<option value="yahoo.com" >yahoo.com</option>
-	<option value="hanmail.net">hanmail.net</option>
-	<option value="daum.net">daum.net</option>
-	<option >그외 직접입력</option>
-</select><br>
+<input type="text" name="email" value="<%=memberDTO.getEmail()%>" readonly>
+<br>
 
 <label>MBTI</label>
 <input type="text" value="<%=memberDTO.getMbti()%>">

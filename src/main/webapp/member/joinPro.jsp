@@ -19,7 +19,7 @@ request.setCharacterEncoding("utf-8");
 String id=request.getParameter("id");
 String pass=request.getParameter("pass");
 String name=request.getParameter("name");
-String email=request.getParameter("email");
+String email=request.getParameter("email")+"@"+request.getParameter("email2");
 String address=request.getParameter("address");
 String phone=request.getParameter("phone");
 String mobile=request.getParameter("mobile");

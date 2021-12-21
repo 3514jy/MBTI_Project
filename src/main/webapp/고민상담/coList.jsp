@@ -16,11 +16,12 @@
 
 <%
 String id = (String)session.getAttribute("id");
-int boardNum = Integer.parseInt(request.getParameter("boardNum"));
 commentDAO cDAO = new commentDAO();
-commentDTO cDTO =  cDAO.getComment(boardNum);
+Menu5DTO menu5dto = new Menu5DTO();
+int boardNum=Integer.parseInt(request.getParameter("boardNum"));
+System.out.println("comment 에서 가져온 boardNum "+boardNum);
 
-int pagesize=50;
+int pagesize=10;
 String pageNum = request.getParameter("pageNum");
 if(pageNum==null){
 	pageNum="1";
@@ -28,20 +29,20 @@ if(pageNum==null){
 int currentPage =Integer.parseInt(pageNum);
 int startRow=(currentPage-1)*pagesize+1;
 int endRow=startRow+pagesize-1;
-List<commentDTO> comList = cDAO.getCommentList(startRow, pagesize);
-
+List<commentDTO> comList = cDAO.getCommentList(startRow, pagesize, boardNum);
 int count=cDAO.getCommnetCount();
 %>
-<p>전체댓글수 :<%=count %></p>
 <table id="notice" border="1">
 
 <%
 for(int i = 0; i<comList.size(); i++){
 	commentDTO dto = comList.get(i);
+// 	if(dto.getBoardNum()==menu5dto.getNum()){
 %>
-	<tr><td>작성자 : <%=id%></td><td><%=cDTO.getDate()%></td></tr>
-	<tr><td colspan="2"><%=cDTO.getComment()%></td></tr>
-<% }%>
+	<tr><td class="Cname">작성자 : <%=id%></td><td class="Cdate"><%=dto.getDate()%></td></tr>
+	<tr><td colspan="2" class="Ccomment"><%=dto.getComment()%></td></tr>
+<% }
+%>
 </table>
 
 
